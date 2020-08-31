@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hello, it's home page of my first Servlet Application</h1>
+<br/>
+<br/>
+<h2>POST запрос:</h2>
+<br/>
+<!-- создаем кнопку, выполняющую пост запрос на страницу /my-app/start-page с параметрами в окне -->
+<form method="post" action="/my-app/handle-servlet" enctype="multipart/form-data">
+    <input name="name">
+    <br/>
+    <input type="date" name="birthday">
+    <br/>
+    <input type="text" name="message">
+    <br/>
+    <input type="file" name="file-name">
+    <button type="submit">Send</button>
+</form>
+<br>
+<br/>
+<h3>GET запрос:</h3>
+<br/>
+<!--<form method="get" action="/my-app/start-page">-->
+<!--    <input name="phone">-->
+<!--    <button type="submit">Send</button>-->
+<!--</form>-->
+
+<!--<br/>-->
+<!--<form method="post" action="/my-app/file-servlet" enctype="multipart/form-data">-->
+<!--    <input type="text" name="author-name">-->
+<!--    <input type="file" name="file-name">-->
+<!--    <button type="submit">Send</button>-->
+<!--</form>-->
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <!-- Сервлет связывает ссылку из адресной строки и Java-класс.
+     servlet:
+     servlet-name - имя, под которым мы обращаемся к этому сервлету внутри проекта
+     servlet-class - По этому пути хранится Java-класс, который обработается при вызове адресной строки.
+
+     servlet-mapping:
+     servlet-name - имя сервлета, указанное в теге <servlet>
+     url-pattern - Это кусок адреса из адресной строки, привязанный к сервлету
+
+     Пример обращения к сервлету ниже - localhost:8080/my-app/my-servlet/
+     смотри pom.xml: первым после порта идет директория /my-app, т. к она задана в теге contextPath (<contextPath>/my-app</contextPath>)
+     -->
+    <servlet>
+        <servlet-name>first-servlet</servlet-name>
+        <servlet-class>arsnaz.MainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>first-servlet</servlet-name>
+        <url-pattern>/my-servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>
