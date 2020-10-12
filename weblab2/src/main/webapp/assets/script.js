@@ -1,20 +1,6 @@
 'use strict'
 
-// $(document).ready(function() {
-//     if (localStorage.getItem("result") != null) {
-//         console.log("local storage data loaded")
-//         let localData = JSON.parse(localStorage.getItem("result"));
-//         localData.map(item => toHtmlTable(item));
-//     }
-// });
 
-//
-// function addToStorage(item) {
-//     let localData = localStorage.getItem("result");
-//     localData = localData ? JSON.parse(localData) : [];
-//     localData.push(item);
-//     localStorage.setItem("result", JSON.stringify(localData));
-// }
 
 function toHtmlTable(jsonResponse) {
     let x = jsonResponse.x;
@@ -27,21 +13,6 @@ function toHtmlTable(jsonResponse) {
     $('.result_table').append(str);
 }
 
-
-
-// function choosen_x(x) {
-//     const field = $('#x_field');
-//     if (field.val() === x) {
-//         field.val("");
-//         $('#x' + x).removeClass('selected');
-//     } else {
-//         if (field.val() !== "") {
-//             $('#x' + field.val()).removeClass('selected');
-//         }
-//         field.val(x);
-//         $('#x' + x).addClass('selected');
-//     }
-// }
 
 
 function choosen_y() {
@@ -79,17 +50,20 @@ function submitValidate() {
 }
 
 $(document).ready(function () {
+
+
+
     $("#form").submit(function (event) {
+
         if (submitValidate()) {
             console.log("valid input data")
-            console.log("request to script.php")
             const xVal = $('#x_field').val();
             const yVal = $('#y_field').val();
             const rVal = $('#r_field').val();
             alert(xVal + " " + yVal+ " " + rVal);
         } else {
-            event.preventDefault();
             console.log("invalid form input data");
+            event.preventDefault();
         }
     });
 });

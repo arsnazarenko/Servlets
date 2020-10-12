@@ -70,6 +70,7 @@ body {
     background: #22292f;
     text-align: center;
     width: 30%;
+
 }
 
 .form_table .bottom {
@@ -163,10 +164,29 @@ body {
     text-align: center;
 }
 
-.schedule {
+#hidden_form {
+    display: none;
+}
+
+.graph {
+    height: 350px;
+    align-content: center;
     box-shadow: 0 4px 10px #c3c3c3;
-    width: 360px;
     margin: 8px 8px 8px 8px;
+}
+
+#canvasGraph {
+    position: relative;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    background: #fff;
+}
+#canvasPoint {
+    position: relative;
+    left: 0px;
+    top: -360px;
+    z-index: 1;
 }
 
 

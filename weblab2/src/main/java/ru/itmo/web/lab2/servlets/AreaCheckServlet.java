@@ -1,15 +1,11 @@
 package ru.itmo.web.lab2.servlets;
-
-
 import ru.itmo.web.lab2.beans.ShotData;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -22,7 +18,13 @@ public class AreaCheckServlet extends HttpServlet {
             double x = Double.parseDouble(req.getParameter("x_coord"));
             double y = Double.parseDouble(req.getParameter("y_coord"));
             double r = Double.parseDouble(req.getParameter("r_coord"));
-            if (xIsValid(x) && yIsValid(y) && rIsValid(r)) {
+            boolean canvas = Boolean.parseBoolean(req.getParameter("canvas"));
+            log(String.valueOf(xIsValid(x)));
+            log(String.valueOf(yIsValid(y)));
+            log(String.valueOf(rIsValid(r)));
+            log(String.valueOf(canvas));
+            boolean valid = canvas?(rIsValid(r)):(xIsValid(x) && yIsValid(y) && rIsValid(r));
+            if (valid) {
                 boolean result = checkInArea(x, y, r);
                 String currentTime = SimpleDateFormat.getTimeInstance().format(new Date());
                 ShotData shot = new ShotData(x, y, r, result, currentTime);
@@ -32,8 +34,8 @@ public class AreaCheckServlet extends HttpServlet {
                 }
                 historyBean.add(shot);
                 req.getSession().setAttribute("shotHistory", historyBean);
-                req.setAttribute("result", shot);
-                req.getRequestDispatcher("/home").forward(req, resp);
+                req.setAttribute("shotResult", shot);
+                req.getRequestDispatcher("/result").forward(req, resp);
                 //fixme: сделать перенаправление н страничку с уведомлением об незультате выстрела и там прикрепить ссылку обратно на форму
             } else {
                 log("Invalid request data");
@@ -55,7 +57,7 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     private boolean xIsValid(double x) {
-        final List<Double> availableValues = Arrays.asList(-3d, -2d, -1d, 0d, 1d, 2d, 3d, 4d, 5d);
+        final List<Double> availableValues = Arrays.asList(-5d, -4d, -3d, -2d, -1d, 0d, 1d, 2d, 3d);
         if (availableValues.contains(x)) {
             return true;
         }

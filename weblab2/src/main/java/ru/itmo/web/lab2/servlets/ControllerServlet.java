@@ -6,10 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @WebServlet(urlPatterns = {"/controller"})
 public class ControllerServlet extends HttpServlet {
@@ -24,26 +21,13 @@ public class ControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log("Method doGet");
         Map<String, String[]> parameters = req.getParameterMap();
-        if (requestIsValid(parameters)) {
+        if ((parameters.keySet().containsAll(Arrays.asList("x_coord", "y_coord", "r_coord")))) {
             req.getRequestDispatcher("/check").forward(req, resp);
         } else {
             resp.sendRedirect("/web-app/home");
         }
     }
 
-    /**
-     * Метод, проверяющий наличие только трех нужных парамтеров, а также проверяя количество значений каждого параметра (требуется только одно)
-     *
-     * @param parameters
-     * @return
-     */
-    private boolean requestIsValid(Map<String, String[]> parameters) {
-
-        if (parameters.keySet().equals(new HashSet<>(Arrays.asList("x_coord", "y_coord", "r_coord")))) {
-            return parameters.values().stream().map(array -> array.length == 1).reduce((e1, e2) -> e1 && e2).orElse(false);
-        }
-        return false;
-    }
 
 
 

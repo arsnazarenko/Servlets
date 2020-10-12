@@ -1,4 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="ru.itmo.web.lab2.beans.ShotData" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%--
@@ -17,8 +20,41 @@
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="assets/script.js"></script>
+    <script type="text/javascript" src="assets/canvas.js"></script>
     <link rel="stylesheet" href="assets/reset.css">
     <link rel="stylesheet" href="assets/homepage-style.css">
+
+    <script>
+        <jsp:useBean id="shotHistory" class="java.util.ArrayList" scope="session" />
+        $(document).ready(function() {
+            let canvas = document.getElementById("canvasPoint");
+            canvas.addEventListener('click', function(e) {
+                canvasSubmit(canvas, e)
+            });
+            drawGraph();
+            let r = document.getElementById('r_field').addEventListener('input', function (event) {
+                if(choosen_r()) {
+                    const canvas = document.getElementById("canvasPoint");
+                    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+                    <c:forEach var="elem" items = "${shotHistory}">
+                    printPoint(${elem.x}, ${elem.y}, ${elem.r}, ${elem.result});
+                    </c:forEach>
+                }
+            });
+            <%if (!shotHistory.isEmpty()) {
+                ShotData shot = (ShotData) shotHistory.get(shotHistory.size() -1);%>
+                setLastR(<%=shot.getR()%>);
+            <%}%>
+
+            <c:forEach var="elem" items = "${shotHistory}">
+            printPoint(${elem.x}, ${elem.y}, ${elem.r}, ${elem.result});
+            </c:forEach>
+
+
+        });
+
+    </script>
+
 </head>
 <body>
 <table class="wrapper">
@@ -43,7 +79,11 @@
             <table class="form_table">
                 <tr>
                     <td colspan="2" class="top">
-                        <img class="schedule" src="assets/images/areas4.png" alt="schedule">
+                        <%--                        <img class="schedule" src="assets/images/areas4.png" alt="schedule">--%>
+                            <div class="graph">
+                                <canvas id="canvasGraph" width="360" height="360"></canvas>
+                                <canvas id="canvasPoint" width="360" height="360"></canvas>
+                            </div>
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +92,7 @@
                             <div class="coordinates">
                                 <div class="x_coordinate">
                                     <label for="x_field">X:</label>
-                                    <select name = "x_coord" id="x_field">
+                                    <select name="x_coord" id="x_field">
                                         <option value="-5">-5</option>
                                         <option value="-4">-4</option>
                                         <option value="-3">-3</option>
@@ -79,6 +119,13 @@
                                 </div>
                             </div>
                         </form>
+                        <form id="hidden_form" action="${pageContext.request.contextPath}/controller" method="get">
+                            <input type="text" name="x_coord" id="hidden_x" autocomplete="off">
+                            <input type="text" name="y_coord" id="hidden_y" autocomplete="off">
+                            <input type="text" name="r_coord" id="hidden_r" autocomplete="off">
+                            <input type="text" name="canvas" id="hidden_canvas" value="true" autocomplete="off">
+                            <button type="submit" id="hidden_submit">GO</button>
+                        </form>
                     </td>
                 </tr>
             </table>
@@ -90,13 +137,12 @@
                 <col class="coordinateCol">
                 <tr>
                     <th><b>X</b></th>
-                    <th> <b>Y</b></th>
+                    <th><b>Y</b></th>
                     <th><b>R</b></th>
                     <th><b>Result</b></th>
                     <th><b>Current Time</b></th>
                 </tr>
-                <jsp:useBean id="shotHistory" class="java.util.ArrayList" scope="session" />
-                <c:forEach var="elem" items = "${shotHistory}">
+                <c:forEach var="elem" items="${shotHistory}">
                     <tr class="${elem.result}">
                         <td>${elem.x}</td>
                         <td>${elem.y}</td>
@@ -114,3 +160,4 @@
     </tr>
 </table>
 </body>
+</html>
