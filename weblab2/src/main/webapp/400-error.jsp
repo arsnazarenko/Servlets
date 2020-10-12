@@ -18,7 +18,7 @@
     <div class="err">4</div>
     <div class="err1">0</div>
     <div class="err2">0</div>
-    <div class="msg"><h2>Bad Request :(</h2>The server did not understand the request. Мay be you sent a request with incorrect parameters.<p>Let's go <a href="/web-app/home">home</a> and try again.</p></div>
+    <div class="msg"><h2>Bad Request :(</h2>The server did not understand the request. Мay be you sent a request with incorrect parameters.<p>Let's go <a href="${pageContext.request.contextPath}/home">home</a> and try again.</p></div>
 </div>
 </body>
 </html>

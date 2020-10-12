@@ -1,8 +1,9 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Арсений
-  Date: 30.09.2020
-  Time: 1:11
+  Date: 03.10.2020
+  Time: 20:12
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -97,16 +98,16 @@
             <th><b>Result</b></th>
             <th><b>Current Time</b></th>
         </tr>
+        <jsp:useBean id="shotResult" class="ru.itmo.web.lab2.beans.ShotData" scope="request"/>
         <tr class="${shotResult.result}">
-            <jsp:useBean id="shotResult" class="ru.itmo.web.lab2.beans.ShotData" scope="request"/>
             <td>${shotResult.x}</td>
             <td>${shotResult.y}</td>
             <td>${shotResult.r}</td>
             <td>${shotResult.result}</td>
-            <td>${shotResult.currentTime}</td>
+            <td><fmt:formatDate type="time" value="${shotResult.currentTime}" /></td>
         </tr>
     </table>
-    <p class="msg">Let's go <a href="/web-app/home">home</a> and try from there.</p>
+    <p class="msg">Let's go <a href="${pageContext.request.contextPath}/home">home</a> and try from there.</p>
 </div>
 
 

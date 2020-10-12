@@ -1,20 +1,5 @@
 'use strict'
 
-
-
-function toHtmlTable(jsonResponse) {
-    let x = jsonResponse.x;
-    let y = jsonResponse.y;
-    let r = jsonResponse.r;
-    let result = jsonResponse.result;
-    let current_time = jsonResponse.current_time;
-    let time = jsonResponse.time;
-    let str = "<tr class=\""+ result + "\"><td>" + x + "</td><td>" + y + "</td><td>" + r + "</td><td>" + result + "</td><td>" + current_time + "</td><td>" + time + "</td></tr>";
-    $('.result_table').append(str);
-}
-
-
-
 function choosen_y() {
     const field = $('#y_field');
     const fieldValue = field.val();
@@ -60,7 +45,7 @@ $(document).ready(function () {
             const xVal = $('#x_field').val();
             const yVal = $('#y_field').val();
             const rVal = $('#r_field').val();
-            alert(xVal + " " + yVal+ " " + rVal);
+            console.log(xVal + ", " + yVal + ", " + rVal);
         } else {
             console.log("invalid form input data");
             event.preventDefault();

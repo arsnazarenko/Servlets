@@ -2,6 +2,7 @@ package ru.itmo.web.lab2.beans;
 
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 public class ShotData implements Serializable {
@@ -9,9 +10,9 @@ public class ShotData implements Serializable {
     private double y;
     private double r;
     private boolean result;
-    private String currentTime;
+    private Date currentTime;
 
-    public ShotData(double x, double y, double r, boolean result, String currentTime) {
+    public ShotData(double x, double y, double r, boolean result, Date currentTime) {
         this.x = x;
         this.y = y;
         this.r = r;
@@ -47,7 +48,7 @@ public class ShotData implements Serializable {
         this.r = r;
     }
 
-    public boolean getResult() {
+    public boolean isResult() {
         return result;
     }
 
@@ -55,11 +56,11 @@ public class ShotData implements Serializable {
         this.result = result;
     }
 
-    public String getCurrentTime() {
+    public Date getCurrentTime() {
         return currentTime;
     }
 
-    public void setCurrentTime(String currentTime) {
+    public void setCurrentTime(Date currentTime) {
         this.currentTime = currentTime;
     }
 
@@ -87,7 +88,7 @@ public class ShotData implements Serializable {
                 ", y=" + y +
                 ", r=" + r +
                 ", result=" + result +
-                ", currentTime='" + currentTime + '\'' +
+                ", currentTime=" + currentTime +
                 '}';
     }
 }

@@ -1,7 +1,6 @@
 <%@ page import="ru.itmo.web.lab2.beans.ShotData" %>
-<%@ page import="java.util.*" %>
-<%@ page import="java.util.stream.Collectors" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%--
@@ -31,8 +30,9 @@
             canvas.addEventListener('click', function(e) {
                 canvasSubmit(canvas, e)
             });
+
             drawGraph();
-            let r = document.getElementById('r_field').addEventListener('input', function (event) {
+            document.getElementById('r_field').addEventListener('input', function (event) {
                 if(choosen_r()) {
                     const canvas = document.getElementById("canvasPoint");
                     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
@@ -41,6 +41,7 @@
                     </c:forEach>
                 }
             });
+
             <%if (!shotHistory.isEmpty()) {
                 ShotData shot = (ShotData) shotHistory.get(shotHistory.size() -1);%>
                 setLastR(<%=shot.getR()%>);
@@ -49,12 +50,8 @@
             <c:forEach var="elem" items = "${shotHistory}">
             printPoint(${elem.x}, ${elem.y}, ${elem.r}, ${elem.result});
             </c:forEach>
-
-
         });
-
     </script>
-
 </head>
 <body>
 <table class="wrapper">
@@ -65,7 +62,7 @@
                     <td class="text">
                         <p>WEB-ПРОГРАММИРОВАНИЕ</p>
                         <p>Вариант 2812</p>
-                        <p>Назаренко А. Е. P3232</p>
+                        <p>Назаренко А. Е. Попова П. И. P3232</p>
                     </td>
                     <td class="emblem">
                         <img src="assets/images/areas3.png" alt="ITMO">
@@ -148,7 +145,7 @@
                         <td>${elem.y}</td>
                         <td>${elem.r}</td>
                         <td>${elem.result}</td>
-                        <td>${elem.currentTime}</td>
+                        <td><fmt:formatDate type="time" value="${elem.currentTime}" /></td>
                     </tr>
                 </c:forEach>
             </table>

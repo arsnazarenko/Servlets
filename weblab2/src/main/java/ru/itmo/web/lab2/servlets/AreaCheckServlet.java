@@ -1,13 +1,17 @@
 package ru.itmo.web.lab2.servlets;
+
 import ru.itmo.web.lab2.beans.ShotData;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 @WebServlet(urlPatterns = {"/check"})
 public class AreaCheckServlet extends HttpServlet {
@@ -23,10 +27,10 @@ public class AreaCheckServlet extends HttpServlet {
             log(String.valueOf(yIsValid(y)));
             log(String.valueOf(rIsValid(r)));
             log(String.valueOf(canvas));
-            boolean valid = canvas?(rIsValid(r)):(xIsValid(x) && yIsValid(y) && rIsValid(r));
+            boolean valid = canvas ? (rIsValid(r)) : (xIsValid(x) && yIsValid(y) && rIsValid(r));
             if (valid) {
                 boolean result = checkInArea(x, y, r);
-                String currentTime = SimpleDateFormat.getTimeInstance().format(new Date());
+                Date currentTime = new Date();
                 ShotData shot = new ShotData(x, y, r, result, currentTime);
                 List<ShotData> historyBean = (List<ShotData>) req.getSession().getAttribute("shotHistory");
                 if (historyBean == null) {
@@ -50,26 +54,17 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     private boolean checkInArea(double x, double y, double r) {
-        return  ((x >= -r && x <= 0 && y >= -r && y <= 0) ||
-                (x >= 0 && y <= 0 && (x - (y + r/2)) <= 0) ||
-                (y >= 0 && x <= 0 && (x * x + y * y <= (r/ 2) * (r/2)))
+        return ((x >= -r && x <= 0 && y >= -r && y <= 0) ||
+                (x >= 0 && y <= 0 && (x - (y + r / 2)) <= 0) ||
+                (y >= 0 && x <= 0 && (x * x + y * y <= (r / 2) * (r / 2)))
         );
     }
 
     private boolean xIsValid(double x) {
         final List<Double> availableValues = Arrays.asList(-5d, -4d, -3d, -2d, -1d, 0d, 1d, 2d, 3d);
-        if (availableValues.contains(x)) {
-            return true;
-        }
-        return false;
+        return availableValues.contains(x);
     }
-    private String paramLog(Map<String, String[]> parameters) {
-        StringBuilder sb = new StringBuilder("Your parameters:\n");
-        parameters.forEach((key, value) -> {
-            sb.append((key + " --> " + Arrays.stream(value).reduce((x, y) -> (x + ", " + y)).get() + " size: " + value.length + "\n"));
-        });
-        return sb.toString();
-    }
+
 
     private boolean rIsValid(double r) {
         return (r >= 2 && r <= 5);
