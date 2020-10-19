@@ -1,0 +1,400 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>FirstLab</title>
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <style>
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+
+            line-height: 1;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+        }
+
+        button {
+            border: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+
+        body {
+            background: #00246a;
+            color: #fff;
+        }
+
+        .top-rounded_border {
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+        .bottom-rounded_border {
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .left-rounded_border {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .right-rounded_border {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+            max-width: 1180px;
+            margin: auto;
+        }
+
+
+        .header {
+            width: 100%;
+            background: #21519F;
+            height: 110px;
+        }
+
+        .header_table, .form_table {
+            width: 100%;
+            height: 100%;
+        }
+
+        .header .emblem {
+            width: 10%;
+        }
+
+        .header img {
+            width: 80px;
+            margin-right: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            float: right;
+        }
+
+        .header .text {
+            line-height: 1.3;
+            padding: 7px;
+            font-size: x-large;
+            font-family: Georgia, serif;
+            font-style: oblique;
+            text-align: left;
+            vertical-align: middle;
+            width: 90%;
+        }
+
+
+        .form {
+            background: #22292f;
+            text-align: center;
+            width: 30%;
+        }
+
+        .form_table .bottom {
+            width: 100%;
+            text-align: center;
+        }
+
+        .x-button {
+            margin: 1px;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-style: italic;
+            font-size: 13px;
+            border-radius: 3px;
+            color: black;
+            background: linear-gradient(to left, whitesmoke, darkgrey);
+            width: 23px;
+            height: 23px;
+            border-style: outset;
+        }
+
+        button,
+        button:active,
+        button:focus {
+            outline: none;
+        }
+
+        .selected {
+            background: linear-gradient(to left, #33b100, white);
+            border-style: inset;
+        }
+
+        .bottom form {
+            height: 100%;
+        }
+
+
+        .coordinates {
+            margin: 0 auto;
+            width: 315px;
+            height: 70%;
+            font-size: 16px;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .x_coordinate, .y_coordinate, .r_coordinate {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .data_submit {
+            padding: 10px;
+            text-align: center;
+        }
+
+        #submit_button {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 20px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #21519F;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        #submit_button:hover {
+            background-color: #1E3F79
+        }
+
+        #submit_button:active {
+            background-color: #1E3F79;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        #y_field, #r_field {
+            /*border: 2px solid red;*/
+            width: 230px;
+            border: 2px outset;
+        }
+
+        .invalid_input {
+            background-color: indianred;
+        }
+
+
+        .x_coordinate button:hover {
+            border-style: inset;
+        }
+
+        .form_table .top {
+            width: 100%;
+            height: 300px;
+            text-align: center;
+        }
+
+        .schedule {
+            box-shadow: 0 4px 10px #c3c3c3;
+            width: 280px;
+            margin: 8px 8px 8px 8px;
+        }
+
+
+        .result_area {
+            padding: 3px;
+            vertical-align: top;
+            background: #fff;
+            width: 70%;
+        }
+
+        .result_table {
+            table-layout: fixed;
+            font-family: sans-serif;
+            font-size: 14px;
+            background: white;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .coordinateCol {
+            width: 90px;
+        }
+
+        .result_table th {
+            font-weight: normal;
+            color: #039;
+            border-bottom: 2px solid #6678b1;
+            padding: 10px 8px;
+        }
+
+        .result_table td {
+            overflow-wrap: break-word;
+            border-bottom: 1px solid #ccc;
+            color: #669;
+            padding: 9px 8px;
+            transition: .3s linear;
+        }
+
+        .result_table .true:hover td {
+            background-color: #87ff8b;
+        }
+
+        .result_table .false:hover td {
+            background-color: #ff5f5b;
+        }
+
+
+        .footer {
+            height: 50px;
+            background: #21519F;
+            vertical-align: bottom;
+            text-align: center;
+            font-size: small;
+            padding-bottom: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<table class="wrapper">
+    <tr>
+        <td class="header bottom-rounded_border" colspan="2">
+            <table class="header_table">
+                <tr>
+                    <td class="text">
+                        <p>WEB-ПРОГРАММИРОВАНИЕ</p>
+                        <p>Вариант 2812</p>
+                        <p>Назаренко А. Е. P3232</p>
+                    </td>
+                    <td class="emblem">
+                        <img src="assets/areas3.png" alt="ITMO">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="form left-rounded_border">
+            <table class="form_table">
+                <tr>
+                    <td colspan="2" class="top">
+                        <img class="schedule" src="assets/areas4.png" alt="schedule">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="bottom">
+                        <form id="form" target="script.php" method="post">
+                            <div class="coordinates">
+                                <div class="x_coordinate">
+                                    X:
+                                    <button type="button" class="x-button" id="x-4" onclick="choosen_x('-4')">-4</button>
+                                    <button type="button" class="x-button" id="x-3" onclick="choosen_x('-3')">-3</button>
+                                    <button type="button" class="x-button" id="x-2" onclick="choosen_x('-2')">-2</button>
+                                    <button type="button" class="x-button" id="x-1" onclick="choosen_x('-1')">-1</button>
+
+                                    <button type="button" class="x-button" id="x0" onclick="choosen_x('0')">0</button>
+                                    <button type="button" class="x-button" id="x1" onclick="choosen_x('1')">1</button>
+                                    <button type="button" class="x-button" id="x2" onclick="choosen_x('2')">2</button>
+                                    <button type="button" class="x-button" id="x3" onclick="choosen_x('3')">3</button>
+                                    <button type="button" class="x-button" id="x4" onclick="choosen_x('4')">4</button>
+
+                                    <input type="hidden" name="x_coord" id="x_field">
+                                </div>
+                                <div class="y_coordinate">
+                                    Y:
+                                    <input type="text" name="y_coord" id="y_field" oninput="choosen_y()"
+                                           placeholder="[-5..5]" autocomplete="off">
+                                </div>
+                                <div class="r_coordinate">
+                                    R:
+                                    <input type="text" name="y_coord" id="r_field" oninput="choosen_r()"
+                                           placeholder="[1..4]" autocomplete="off">
+                                </div>
+                                <div class="data_submit">
+                                    <button type="submit" id="submit_button">GO</button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td class="result_area right-rounded_border">
+            <table class="result_table">
+                <col class="coordinateCol">
+                <col class="coordinateCol">
+                <col class="coordinateCol">
+                <tr>
+                    <th><b>X</b></th>
+                    <th> <b>Y</b></th>
+                    <th><b>R</b></th>
+                    <th><b>Result</b></th>
+                    <th><b>Current Time</b></th>
+                    <th><b>Computation Time</b></th>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="footer top-rounded_border" colspan="2">Copyright © 2020
+        </td>
+    </tr>
+</table>
+</body>
+</html>

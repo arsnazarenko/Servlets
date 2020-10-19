@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        h4 {
+            color: red;
+        }
+
+        div h4 {
+            color: blue;
+        }
+
+        body div h4 {
+            color: greenyellow;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="circle1"></div>
+    <script src="guide.js"></script>
+    <h3>HTTP протокол, GET, POST, PUT.</h3>
+    <br>
+    <h4>В HTTP стркутура запроса состоит из трех частей:</h4>
+    <br>
+    <h5>1. Запрос/статус ответа:</h5>
+    <br>
+    GET /courses/network HTTP/1.1 (клиент)
+    <br>
+    200 OK (сервер)
+    <br>
+    <h5>2. Заголовки(не обязательно):</h5>
+    <br>
+    Host: httpbin.org - обязательный заголовок в HTTP/1.1 потому что на одном IP адресе может работать несколько web-сайтов,
+    <br>
+    Поэтому серверу надо знать с какого сайта нужно загрузить страницу
+    <br>
+    Content-type: - тип передаваемого сообщения
+    <br>
+    Content-length: - длина передаваемого сообщения
+    <h4>3. Тело сообщения(не обязательно):</h4>
+    для клиента - это передаваемое сообщение в POST запросе к примеру<br>
+    для GET тело сообщения не существует
+    <br>
+    <h4>Методы:</h4>
+    <br>
+    GET - запрос web сттаницы
+    <br>
+    POST - передача данных на Web сервер
+    <br>
+    HEAD - как GET, но ответ приходит без тела сообщения
+    <br>
+    PUT - помещение ресурса на WEB сервер
+    <br>
+    DELETE - удаление ресурса с Web сервера
+
+    <div><h4>Статусы:</h4></div>
+    1XX - информация<br>
+    2XX - успешное выполнение<br>
+    3XX - перенаправление (301 - страница перенесена на другой адрес)<br>
+    4XX - ошибка на стороне клиента<br>
+    5XX - ошибка на стороне сервера<br>
+
+
+</body>
+</html>

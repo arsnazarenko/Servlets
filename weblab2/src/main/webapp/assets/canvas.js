@@ -4,9 +4,7 @@ function canvasSubmit(canvas, event) {
     const rect = canvas.getBoundingClientRect();
     const r = $('#r_field').val();
 
-    if (!(choosen_r())) {
-        alert('choose R!!!!')
-    } else {
+    if ((choosen_r())) {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         console.log(x, y, r);

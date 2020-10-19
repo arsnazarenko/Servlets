@@ -6,6 +6,7 @@
     <welcome-file-list>
         <welcome-file>/controller</welcome-file>
     </welcome-file-list>
+
     <servlet>
         <servlet-name>jspForm</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
