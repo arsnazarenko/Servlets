@@ -1,4 +1,4 @@
-package ru.itmo.web.lab2.beans;
+package ru.itmo.lab2.beans;
 
 
 import java.io.Serializable;

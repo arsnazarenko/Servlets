@@ -1,6 +1,6 @@
-package ru.itmo.web.lab2.servlets;
+package ru.itmo.lab2.servlets;
 
-import ru.itmo.web.lab2.beans.ShotData;
+import ru.itmo.lab2.beans.ShotData;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

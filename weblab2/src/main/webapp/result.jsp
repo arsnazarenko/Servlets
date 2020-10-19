@@ -98,7 +98,7 @@
             <th><b>Result</b></th>
             <th><b>Current Time</b></th>
         </tr>
-        <jsp:useBean id="shotResult" class="ru.itmo.web.lab2.beans.ShotData" scope="request"/>
+        <jsp:useBean id="shotResult" class="ru.itmo.lab2.beans.ShotData" scope="request"/>
         <tr class="${shotResult.result}">
             <td>${shotResult.x}</td>
             <td>${shotResult.y}</td>

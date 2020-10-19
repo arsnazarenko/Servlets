@@ -1,4 +1,4 @@
-package ru.itmo.web.lab2.servlets;
+package ru.itmo.lab2.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +24,7 @@ public class ControllerServlet extends HttpServlet {
         if ((parameters.keySet().containsAll(Arrays.asList("x_coord", "y_coord", "r_coord")))) {
             req.getRequestDispatcher("/check").forward(req, resp);
         } else {
-            resp.sendRedirect("/web-app/home");
+            resp.sendRedirect(getServletConfig().getServletContext().getContextPath() +  "/home");
         }
     }
 
