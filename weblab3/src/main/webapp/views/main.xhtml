@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  User: Арсений
+  Date: 20.10.2020
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+<h:head>
+    <title>StudentSystem</title>
+</h:head>
+<h:body>
+    <h:form id = "newStudentForm">
+        <div>
+            <h:outputLabel for="first-name" value="Имя"/>
+            <h:inputText id="first-name" value="#{exampleBean.newStudent.firstName}"/>
+        </div>
+        <div>
+            <h:outputLabel for="last-name" value="Фамилия"/>
+            <h:inputText id="last-name" value="#{exampleBean.newStudent.lastName}"/>
+        </div>
+        <div>
+            <h:outputLabel for="age" value="Возраст"/>
+            <h:inputText id="age" value="#{exampleBean.newStudent.age}"/>
+        </div>
+        <div>
+            <h:commandButton value="Добавить" action="#{exampleBean.addStudent()}">
+                <f:ajax execute="newStudentForm" render="studentTable"/>
+            </h:commandButton>
+        </div>
+    </h:form>
+    <h:panelGroup id="studentTable">
+        <h:dataTable value="#{exampleBean.students}" var="student">
+            <h:column>
+                <f:facet name="header">Имя</f:facet>
+                #{student.firstName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Фамилия</f:facet>
+                #{student.lastName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Возраст</f:facet>
+                #{student.age}
+            </h:column>
+        </h:dataTable>
+    </h:panelGroup>
+</h:body>
+
+</html>
