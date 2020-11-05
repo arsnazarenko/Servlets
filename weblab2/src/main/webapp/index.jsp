@@ -145,7 +145,7 @@
                         <td>${elem.y}</td>
                         <td>${elem.r}</td>
                         <td>${elem.result}</td>
-                        <td><fmt:formatDate type="time" value="${elem.currentTime}" /></td>
+                        <td><fmt:formatDate type="time" value="${elem.currentTime}"/></td>
                     </tr>
                 </c:forEach>
             </table>
