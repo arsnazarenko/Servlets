@@ -1,0 +1,36 @@
+#clock {
+    height: 580px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    margin: 110px auto 10px;
+}
+#canvasBackground {
+    z-index: 1;
+}
+
+#link {
+    text-align: center;
+}
+#link a {
+    color: #2bbc0e;
+}
+
+#link a:hover, #link a:active{
+    color: #ff5026;
+}
+
+#link a:visited {
+    color: #b905c3;
+}
+
+
+
+
+
+
+#canvasFront {
+    z-index: 2;
+    position: relative;
+    top: -570px;
+}

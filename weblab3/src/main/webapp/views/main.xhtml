@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ace="http://www.icefaces.org/icefaces/components"
+                template="../WEB-INF/template.xhtml">
+    <ui:define name="outputResources">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <h:outputScript name = "js/script.js" />
+        <h:outputScript name = "js/canvas.js" />
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="content">
+            <div class="form">
+                <div class="canvas">
+                    <canvas id="canvasGraph" width="420" height="420"/>
+                    <canvas id="canvasPoint" width="420" height="420"/>
+                </div>
+                <div class="hiddenForm">
+                    <h:form id="canvasForm">
+                        <h:inputHidden id="x_value_canvas" value="#{shotsHistoryBean.newShot.x}" required="true"/>
+                        <h:inputHidden id="y_value_canvas" value="#{shotsHistoryBean.newShot.y}" required="true"/>
+                        <h:inputHidden id="r_value_canvas" value="#{shotsHistoryBean.newShot.r}" required="true"/>
+                        <h:commandButton id="canvasButton" action="#{shotsHistoryBean.addShot()}">
+                            <f:ajax execute="canvasForm" render="shotsTable"/>
+                        </h:commandButton>
+                    </h:form>
+                </div>
+                <div>
+                    <h:form id="shotForm" >
+                        <div class="x">
+                            <h:outputLabel for="x_value" value="X:" style="margin-right: 10px"/>
+                            <h:inputHidden id="x_value" class="x_link" value="#{shotsHistoryBean.newShot.x}"
+                                           required="true" requiredMessage="X is required"/>
+                            <h:commandLink id="x-3" class="x_link" value="-3"/>
+                            <h:commandLink id="x-2" class="x_link" value="-2"/>
+                            <h:commandLink id="x-1" class="x_link" value="-1"/>
+                            <h:commandLink id="x0" class="x_link" value="0"/>
+                            <h:commandLink id="x1" class="x_link" value="1"/>
+                            <h:commandLink id="x2" class="x_link" value="2"/>
+                            <h:commandLink id="x3" class="x_link" value="3"/>
+                            <h:commandLink id="x4" class="x_link" value="4"/>
+                            <h:commandLink id="x5" class="x_link" value="5"/>
+                            <div style="height: 18px; width: inherit" >
+                                <h:message id="x_error" for="x_value" style="color:red; font-size: 15px;" />
+                            </div>
+                        </div>
+                        <div class="y">
+                            <h:outputLabel for="y_value" value="Y:" style="margin-right: 10px"/>
+                            <h:inputText id="y_value" value="#{shotsHistoryBean.newShot.y}" style="width: 205px"
+                                         validatorMessage="Y from [-3;5]" required="true" requiredMessage="Y is required">
+                                <f:validateDoubleRange minimum="-3"
+                                                       maximum="5"
+                                />
+                            </h:inputText>
+                            <br/>
+                            <div style="height: 18px; width: inherit" >
+                                <h:message id="y_error" style="color: red; font-size: 15px"  for="y_value"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="r">
+                            <h:inputHidden id="r_value" value="#{shotsHistoryBean.newShot.r}" required="true"/>
+                            <h:outputLabel for="r_value_slider" value="R:" style="margin-right: 10px"/>
+                            <ace:sliderEntry id="r_value_slider"
+                                             clickableRail="true"
+                                             onSlide="sliderChangeValue()"
+                                             onSlideEnd="sliderChangeValue()"
+                                             min="2"
+                                             max="8"
+                                             axis="x"
+                                             length="205"
+                                             stepPercent="17"
+                            />
+                            <div class="submit-button">
+                                <h:commandButton id="form-button" value="Добавить" action="#{shotsHistoryBean.addShot()}">
+                                    <f:ajax execute="shotForm" render="shotsTable y_error x_error"/>
+                                </h:commandButton>
+                            </div>
+                        </div>
+
+                    </h:form>
+                </div>
+            </div>
+            <div>
+                <h:panelGroup id="shotsTable">
+                    <h:outputScript>
+                        clear();
+                        printOnGraph();
+                        function printOnGraph() {
+                        const strJsonShots = JSON.stringify(#{shotsHistoryBean.jsonShotsHistory});
+                        JSON.parse(strJsonShots).forEach(shot => {
+                        printPoint(shot.x, shot.y, shot.r, shot.result);
+                        })
+                        }
+                    </h:outputScript>
+                    <h:dataTable value="#{shotsHistoryBean.shots}" var="shot">
+                        <h:column>
+                            <f:facet name="header">X</f:facet>
+                            #{shot.x}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Y</f:facet>
+                            #{shot.y}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">R</f:facet>
+                            #{shot.r}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Result</f:facet>
+                            #{shot.result}
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

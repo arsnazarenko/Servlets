@@ -15,7 +15,7 @@ function canvasSubmit(canvas, event) {
 }
 
 function toRadiusCoordinate(x, y, r, canvas) {
-    const rect = canvas.getBoundingClientRect()
+    const rect = canvas.getBoundingClientRect();
     const wight = rect.width;
     const height = rect.height;
     const x_coord = Math.round(((x - wight / 2) / (wight / 6)) * (r / 2) * 1000) / 1000;

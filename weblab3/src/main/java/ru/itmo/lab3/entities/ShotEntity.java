@@ -1,23 +1,41 @@
-package ru.itmo.lab3.models;
+package ru.itmo.lab3.entities;
 
-import java.io.Serializable;
-import java.util.Objects;
+import javax.persistence.*;
 
-public class ShotData implements Serializable {
+@Entity
+@Table(name="shothistory")
+public class ShotEntity {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue()
+    private Long id;
+
+    @Column(name = "x")
     private Double x;
+    @Column(name = "y")
     private Double y;
+    @Column(name = "r")
     private Double r;
+    @Column(name = "result")
     private Boolean result;
 
-    public ShotData() {
-
-    }
-
-    public ShotData(Double x, Double y, Double r, Boolean result) {
+    public ShotEntity(Double x, Double y, Double r, Boolean result) {
         this.x = x;
         this.y = y;
         this.r = r;
         this.result = result;
+    }
+
+    public ShotEntity() {
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Double getX() {
@@ -53,25 +71,10 @@ public class ShotData implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ShotData shotData = (ShotData) o;
-        return Objects.equals(x, shotData.x) &&
-                Objects.equals(y, shotData.y) &&
-                Objects.equals(r, shotData.r) &&
-                Objects.equals(result, shotData.result);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y, r, result);
-    }
-
-    @Override
     public String toString() {
-        return "ShotData{" +
-                "x=" + x +
+        return "ShotEntity{" +
+                "id=" + id +
+                ", x=" + x +
                 ", y=" + y +
                 ", r=" + r +
                 ", result=" + result +

@@ -22,7 +22,7 @@
     <h:outputScript name = "js/canvas.js" />
     <h:outputStylesheet  name="css/main-page.css"/>
     <h:outputStylesheet  name="css/reset.css"/>
-    <link rel="shortcut icon" type="image/x-icon" href="../resources/images/favicon.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../../resources/images/favicon.png"/>
 </h:head>
 
 <h:body>
@@ -34,7 +34,7 @@
         P3232
         <br/>
         WEB-Программирование
-        <img src="../resources/images/areas3.png" alt="ITMO"/>
+        <img src="../../resources/images/areas3.png" alt="ITMO"/>
     </div>
     <div class="content">
         <div class="form">
@@ -53,7 +53,7 @@
                 </h:form>
             </div>
             <div>
-                <h:form id="shotForm">
+                <h:form id="shotForm" >
                     <div class="x">
                         <h:outputLabel for="x_value" value="X:" style="margin-right: 10px"/>
                         <h:inputHidden id="x_value" class="x_link" value="#{shotsHistoryBean.newShot.x}"
@@ -99,7 +99,7 @@
                                          stepPercent="17"
                         />
                         <div class="submit-button">
-                            <h:commandButton value="Добавить" action="#{shotsHistoryBean.addShot()}">
+                            <h:commandButton id="form-button" value="Добавить" action="#{shotsHistoryBean.addShot()}">
                                 <f:ajax execute="shotForm" render="shotsTable y_error x_error"/>
                             </h:commandButton>
                         </div>
@@ -133,10 +133,6 @@
                     <h:column>
                         <f:facet name="header">R</f:facet>
                         #{shot.r}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">CurrentTime</f:facet>
-                        #{shot.currentTime}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Result</f:facet>
