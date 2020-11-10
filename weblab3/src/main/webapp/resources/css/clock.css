@@ -9,25 +9,6 @@
     z-index: 1;
 }
 
-#link {
-    text-align: center;
-}
-#link a {
-    color: #2bbc0e;
-}
-
-#link a:hover, #link a:active{
-    color: #ff5026;
-}
-
-#link a:visited {
-    color: #b905c3;
-}
-
-
-
-
-
 
 #canvasFront {
     z-index: 2;

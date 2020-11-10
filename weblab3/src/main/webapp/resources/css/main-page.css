@@ -75,7 +75,7 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     margin-right: 10px;
-    height: 575px;
+    height: 580px;
     float: left;
 }
 .result {
@@ -198,3 +198,37 @@ body {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+#labels {
+    font-size: 12px;
+    width: 205px;
+    height: 20px;
+    position: relative;
+    top: -16px;
+    left: 24px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#labels span {
+    margin-right: 23px;
+}
+ #link {
+    text-align: center;
+}
+#link a {
+    color: #2bbc0e;
+}
+
+#link a:hover, #link a:active{
+    color: #ff5026;
+}
+
+#link a:visited {
+    color: #fffa3c;
+}
+
+
+
+
+

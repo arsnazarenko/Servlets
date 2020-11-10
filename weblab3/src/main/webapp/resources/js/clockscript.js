@@ -12,7 +12,6 @@ function printClockBackground() {
 
     //Рисуем контур часов
     contextHTML.strokeStyle = "#ffffff";
-    contextHTML.lineWidth = 1;
     contextHTML.beginPath();
     contextHTML.arc(xCenterClock, yCenterClock, radiusClock, 0, 2 * Math.PI, true);
     contextHTML.moveTo(xCenterClock, yCenterClock);
