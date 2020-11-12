@@ -62,6 +62,7 @@ public class HistoryService {
     }
 
 
+
     public List<ShotEntity> getShotHistory () {
         try(Session session = sessionFactory.openSession()) {
             return session.createQuery("from ShotEntity", ShotEntity.class).list();
